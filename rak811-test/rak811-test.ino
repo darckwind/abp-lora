@@ -2,18 +2,19 @@
 #define JOIN_MODE ABP
 #define WORK_MODE LoRaWAN
 //parametros de coneccion
-String NwkSKey = "tu-clave";
-String AppSKey = "tu-clave";
-String DevAddr = "tu-direccion-de dispositivo";
-bool resp =true;//cambiar a true cuando se pruebe en conjunto al server
+String NwkSKey = "13f2b06760260961fe16146c113cee8e";
+String AppSKey = "0db9665b3a84f04cf8b3c2d9fe3e467d";
+String DevAddr = "0169d837";
+bool resp =false;//cambiar a true cuando se pruebe en conjunto al server
 int tipo = 1; //paquetes confirmados=1
 int port = 1;//puertos 1-233
-char* buffer = "72616B776972656C657373";
+char* buffer = "202030";
 #define ATSerial Serial
 #define DebugSerial Serial
 
 RAK811 RAKLoRa(ATSerial,DebugSerial);
 void setup() {
+  
   DebugSerial.begin(115200);
   DebugSerial.print("inicio");
   ATSerial.begin(115200);
@@ -36,17 +37,11 @@ void setup() {
 }
 
 void loop() {
+DebugSerial.println(RAKLoRa.sendRawCommand("at+reset=0\r\n"));
+DebugSerial.println(RAKLoRa.sendRawCommand("at+version\r\n"));
+DebugSerial.println(RAKLoRa.sendRawCommand("at+join=abp\r\n"));
+DebugSerial.println(RAKLoRa.sendRawCommand("at+abp_info\r\n"));
+DebugSerial.println(RAKLoRa.sendRawCommand("at+send=1,2,202020\r\n"));
 
-Serial.println("vercion");
-DebugSerial.println(RAKLoRa.rk_getVersion());
-Serial.println("banda ");
-DebugSerial.println(RAKLoRa.rk_getBand());
-Serial.println("modo de trabajo");
-DebugSerial.println(RAKLoRa.rk_setWorkingMode(WORK_MODE));
-Serial.println("tipo de red");
-DebugSerial.println(RAKLoRa.rk_joinLoRaNetwork(JOIN_MODE));
-//envio de datos
-DebugSerial.println(RAKLoRa.rk_sendData(tipo,port,buffer));
-//envio de datos
-DebugSerial.println(RAKLoRa.rk_recvData());
+delay(60000);
 }

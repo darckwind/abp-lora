@@ -62,10 +62,22 @@ void setup() {
 void loop() {
   //envio de datos con los parametros tipo, puerto y dato en hex. devuelve un boleano
   DebugSerial.println(tipo,port,buffer);
-  
+  delay(600);
   //recepcion de respuesta del modulo devuelve un string con la respesta del modulo
   DebugSerial.println(RAKLoRa.rk_recvData());
-
+  delay(600);
+  
   //en caso de que se quiera enviar un comando at, solo retorna un string de la prmera linea esperada de retorno
   DebugSerial.println(RAKLoRa.sendRawCommand(Command));
+  delay(600);
+  
+  //estadisticas de la señal de radio
+  DebugSerial.println(RAKLoRa.rk_checkStatusStatistics());
+  delay(600);
+
+  //obtener info de la configuracion
+  DebugSerial.println(RAKLoRa.rk_getConfig("dev_addr"));
+  DebugSerial.println(RAKLoRa.rk_getConfig("apps_key"));
+  DebugSerial.println(RAKLoRa.rk_getConfig("nwks_key"));
+  delay(600);
 }

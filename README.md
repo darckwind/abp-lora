@@ -7,4 +7,4 @@
  ### RAK811 configuration</br> 
 Set the jumpers between the pins
  * CRX => TXD and CTX => RXD
-* 5_3R => TDX and 5_3T => RDX
+ * 5_3R => TDX and 5_3T => RDX

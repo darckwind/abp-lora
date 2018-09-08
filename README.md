@@ -8,3 +8,4 @@
 Set the jumpers between the pins
  * CRX => TXD and CTX => RXD
  * 5_3R => TDX and 5_3T => RDX
+ <img src="https://i.pinimg.com/originals/12/7e/47/127e4726e179b56442707227bc176cf2.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" />
